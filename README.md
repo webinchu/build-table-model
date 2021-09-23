@@ -8,10 +8,8 @@
 
 1. 根目下执行php think make:command gii-model (生成GiiModel类)
 2. 编辑生成的GiiModel类(代码如下)
-3. (重要)将GiiModel加入config/console.php(没有的话找下是否有command.php),按照已有的格式写进去
-~~~
-'app\common\command\GiiModel' //这个是我自己项目的路径(按照你自己的路径填写)
-~~~
+3. (重要)将GiiModel加入config/console.php(没有的话找下是否有command.php),按照已有的格式写进去('app\common\command\GiiModel' //这个是我自己项目的路径(
+   按照你自己的路径填写))
 4. 执行php think 看看是不是有gii-model
 5. 根目录下执行php think gii-model user (user是表名)
 
