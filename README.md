@@ -1,3 +1,4 @@
 # build-table-model
 
-自动生成数据库表model类
+根据表自动model类
+
