@@ -18,16 +18,77 @@ class BuildModel
     protected $tableName = '';
     protected $trueTableName = '';
     protected $namespace = '';
+    protected $savePath = '';
 
-
-    public function __construct($mysql, $tablePre, $tableName,$namespace)
+    /**
+     * @param object $mysql \mysqli 对象
+     * @param string $tableName 表名
+     * @param string $namespace model 命名空间
+     * @param string $savePath model保存位置
+     * @param string $tablePre 表前缀
+     */
+    public function __construct($mysql, $tableName, $namespace, $savePath, $tablePre = '')
     {
         $this->tableName = $tableName;
         $this->tablePre = $tablePre;
         $this->trueTableName = $this->tablePre . $tableName;//要生成哪张表，完整表名
         $this->mysql = $mysql;
         $this->namespace = $namespace;
+        $this->savePath = $savePath;
     }
+
+    /**
+     * 生成model
+     * @return bool
+     * @throws \Exception
+     */
+    public function create()
+    {
+        try {
+            $search = array(
+                '{%fields%}',
+                '{%tableName%}',
+                '{%trueTableName%}',
+                '{%dbName%}',
+                '{%className%}',
+                '{%_auto%}',
+                '{%_validate%}',
+                '{%namespace%}',
+                '{%property%}');
+            $replace = array(
+                $this->getFieldString(),
+                $this->getTableName(),
+                $this->getTrueTableName(),
+                $this->getDbName(),
+                $this->getModelClassName(),
+                $this->getAutoFill(),
+                $this->getAutoValidate(),
+                $this->namespace,
+                $this->getProperty());
+            $str = ucwords(str_replace('_', ' ', $this->getTableName()));
+            $str = str_replace(' ', '', lcfirst($str));
+            $modelName = $str ? ucfirst($str) : $str;
+            $basePath = $this->savePath;
+            if (!is_dir($basePath)) {
+                mkdir($basePath);
+            }
+            if (isset($dir)) {
+                $newDir = $basePath . $dir;
+                if (!is_dir($newDir)) {
+                    mkdir($newDir);
+                }
+                $path = $newDir . '/' . $modelName . '.php';
+            } else {
+                $path = $basePath . $modelName . '.php';
+            }
+            $classString = str_replace($search, $replace, ModelTpl::getTiiTpl());
+            file_put_contents($path, $classString);
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
 
     public function getDbName()
     {
@@ -239,35 +300,5 @@ class BuildModel
             $className = $this->tableName;
         }
         return $className;
-    }
-
-
-    public function getTiiTpl()
-    {
-        $t = <<<__END
-<?php
-
-namespace {%namespace%};
-
-/**
- * This is the model class for table "{%trueTableName%}".
-{%property%}
-*/
-class {%className%} {
-        
-    /**
-     * @var string 表名
-     */
-    public \$tableName = '{%trueTableName%}';
-   
-    /**
-     * @var array 本章表的字段
-     */
-    public \$fields = {%fields%};
-    
-}
- 
-__END;
-        return $t;
     }
 }
