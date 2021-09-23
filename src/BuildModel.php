@@ -15,9 +15,6 @@ class BuildModel
     protected $tablePre = '';
     protected $dbName = '';
     protected $isHump = true;
-    protected $host = '';
-    protected $user = '';
-    protected $pass = '';
     protected $tableName = '';
     protected $trueTableName = '';
     protected $namespace = '';
@@ -74,13 +71,8 @@ class BuildModel
     public function getTiiFields($tableName)
     {
         $this->mysql->set_charset('utf8mb4');
-
-        $noteQuery = $this->mysql->query("SHOW FULL COLUMNS
-FROM  " . $this->tablePre . $this->tableName . ";");
-
+        $noteQuery = $this->mysql->query("SHOW FULL COLUMNS FROM  " . $this->tablePre . $this->tableName . ";");
         $notes = $noteQuery->fetch_all(1);
-//        $notes = Db::query("SHOW FULL COLUMNS
-//FROM  " . $this->tablePre . $this->tableName . ";");
         $fetch = $this->getDesc($this->getTrueTableName());
         $fields = [];
         foreach ($fetch as $field) {
@@ -93,19 +85,6 @@ FROM  " . $this->tablePre . $this->tableName . ";");
             $fields[$field['Field']] = $comment;
         }
         return $fields;
-//        $fetch = $this->getDesc($tableName);
-//
-//        $fields = array();
-//        foreach ($fetch as $value) {
-//            $fields[] = $value['Field'];
-////            if (strpos($value['Key'], 'PRI') !== false) {
-////                $fields['_pk'] = $value['Field'];
-////            }
-////            if ($value['Extra'] == 'auto_increment') {
-////                $fields['_autoinc'] = true;
-////            }
-//        }
-//        return $fields;
     }
 
 
@@ -130,7 +109,6 @@ FROM  " . $this->tablePre . $this->tableName . ";");
             $NotNull = false;
             if ($field['Null'] == "NO" && $field['Default'] === null) {
                 $NotNull = true;
-                //$array[] = array($field['Field'], 'require', $field['Field'] . ' Can not be a null！', 1);
                 $requires[] = $field['Field'];
             }
             if ($field['Key'] == "UNI") {
@@ -176,8 +154,7 @@ FROM  " . $this->tablePre . $this->tableName . ";");
 
     public function getProperty()
     {
-        $noteQuery = $this->mysql->query("SHOW FULL COLUMNS
-FROM  ".$this->tablePre . $this->tableName.";");
+        $noteQuery = $this->mysql->query("SHOW FULL COLUMNS FROM  ".$this->tablePre . $this->tableName.";");
         $notes = $noteQuery->fetch_all(1);
         $fetch = $this->getDesc($this->getTrueTableName());
         $property = array();
@@ -229,7 +206,6 @@ FROM  ".$this->tablePre . $this->tableName.";");
             $key === 0 and $i = 0;
             reset($array);
         }
-//        list($key) = each($array);
 
         foreach ($array as $key => $value) {
             if (isset($i) && $key == $i && ++$i) {
