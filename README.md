@@ -70,3 +70,7 @@ class GiiModel extends Command
 
 ~~~
 
+### Laravel
+
+可结合php artisan make:command  (大同小异)
+
