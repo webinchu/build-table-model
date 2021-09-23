@@ -1,0 +1,20 @@
+{
+    "name": "build-model/build-model",
+    "description": "自动生成表数据库表对应model类",
+    "authors": [
+        {
+            "name": "webin",
+            "email": "1014953068@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "webin\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
