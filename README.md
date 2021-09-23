@@ -43,6 +43,7 @@ class GiiModel extends Command
     {
         $params = $input->getArgument('table');
         $table = $params[0];
+        //根据自己项目写(自定义)
         $namespace="app\\common\\model";
         //根据自己环境进行配置
         $config = config('test.database.');
@@ -54,6 +55,7 @@ class GiiModel extends Command
             $config['hostport']
         );
         $tablePre = '';
+        //根据自己项目写(自定义)
         $basePath = $this->getRootPath() . "application/common/model/";
         $Tii = new BuildModel($mysql, $table, $namespace, $basePath, $tablePre);
         $Tii->create();
