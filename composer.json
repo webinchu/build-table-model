@@ -1,5 +1,5 @@
 {
-    "name": "build-model/build-model",
+    "name": "webin/build-model",
     "description": "自动生成表数据库表对应model类",
     "authors": [
         {
