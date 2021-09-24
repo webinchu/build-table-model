@@ -28,7 +28,6 @@ use webin\BuildModel;
 class GiiModel extends Command
 {
     /**
-     * 自动生成model类  php think gii-model test@user test 文件夹 user表名
      * 自动生成model类  php think gii-model user   user 表名字
      */
     protected function configure()
