@@ -1,6 +1,6 @@
 {
     "name": "webin/build-model",
-    "description": "自动生成表数据库表对应model类",
+    "description": "自动生成表数据库表对应model类(TP、Laravel、Yii)",
     "authors": [
         {
             "name": "webin",
