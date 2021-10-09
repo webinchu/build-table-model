@@ -1,4 +1,5 @@
-# build-table-model
+# build-table-model 
+composer require webin/build-model
 
 根据表自动生成model类
 
