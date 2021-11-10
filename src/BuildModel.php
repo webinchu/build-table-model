@@ -19,6 +19,7 @@ class BuildModel
     protected $trueTableName = '';
     protected $namespace = '';
     protected $savePath = '';
+    protected $extend = '';
 
     /**
      * @param object $mysql \mysqli 对象
@@ -26,8 +27,9 @@ class BuildModel
      * @param string $namespace model 命名空间
      * @param string $savePath model保存位置
      * @param string $tablePre 表前缀
+     * @param string $extend 继承父类
      */
-    public function __construct($mysql, $tableName, $namespace, $savePath, $tablePre = '')
+    public function __construct($mysql, $tableName, $namespace, $savePath, $tablePre = '', $extend = '')
     {
         $this->tableName = $tableName;
         $this->tablePre = $tablePre;
@@ -35,6 +37,7 @@ class BuildModel
         $this->mysql = $mysql;
         $this->namespace = $namespace;
         $this->savePath = $savePath;
+        $this->extend = $extend;
     }
 
     /**
@@ -54,7 +57,10 @@ class BuildModel
                 '{%_auto%}',
                 '{%_validate%}',
                 '{%namespace%}',
-                '{%property%}');
+                '{%property%}',
+                '{%extend%}',
+
+            );
             $replace = array(
                 $this->getFieldString(),
                 $this->getTableName(),
@@ -64,7 +70,9 @@ class BuildModel
                 $this->getAutoFill(),
                 $this->getAutoValidate(),
                 $this->namespace,
-                $this->getProperty());
+                $this->getProperty(),
+                $this->extend ? ' extends ' . $this->extend : ''
+            );
             $str = ucwords(str_replace('_', ' ', $this->getTableName()));
             $str = str_replace(' ', '', lcfirst($str));
             $modelName = $str ? ucfirst($str) : $str;
