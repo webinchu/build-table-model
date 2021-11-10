@@ -24,7 +24,7 @@ namespace {%namespace%};
  * This is the model class for table "{%trueTableName%}".
 {%property%}
 */
-class {%className%} {%extend%} {
+class {%className%}{%extend%} {
         
     /**
      * @var string 表名
