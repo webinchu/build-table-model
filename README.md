@@ -47,6 +47,7 @@ class GiiModel extends Command
         $namespace="app\\common\\model";
         //根据自己环境进行配置
         $config = config('test.database.');
+        $extend = "\app\common\model\BaseModel"; //继承父类
         $mysql = new mysqli(
             $config['hostname'],
             $config['username'],
@@ -57,7 +58,7 @@ class GiiModel extends Command
         $tablePre = '';
         //根据自己项目写(自定义)
         $basePath = $this->getRootPath() . "application/common/model/";
-        $Tii = new BuildModel($mysql, $table, $namespace, $basePath, $tablePre);
+        $Tii = new BuildModel($mysql, $table, $namespace, $basePath, $tablePre,$extend);
         $Tii->create();
         exit;
     }
