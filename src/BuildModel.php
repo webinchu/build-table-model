@@ -248,7 +248,9 @@ class BuildModel
         list($type) = explode('(', $typeString);
         $types = array(
             self::TYPE_INT => array('int', 'bigint', 'tinyint'),
-            self::TYPE_STRING => array('text', 'char', 'varchar', 'decimal', 'longtext', 'mediumtext','timestamp')
+            self::TYPE_STRING => array(
+                'text', 'char', 'varchar', 'decimal', 'longtext', 'mediumtext', 'timestamp', 'json', 'datetime'
+            )
         );
 
         foreach ($types as $key => $value) {
