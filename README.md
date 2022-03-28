@@ -71,7 +71,90 @@ class GiiModel extends Command
 
 ~~~
 
-### Laravel
+### Laravel | Lumen
 
-可结合php artisan make:command  (大同小异)
+1. 终端执行: php artian make:command GiiModel
+2. 编辑GiiModel(代码如下)
+~~~
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use mysqli;
+use webin\BuildModel;
+
+class GiiModel extends Command
+{
+    /**
+     * The name and signature of the console command.
+     * eg 1: 带目录 php artisan gii-model test@user     test 文件夹 user表名
+     * eg 2: 不带目录 php artisan gii-model user         user表名
+     * @var string
+     */
+    protected $signature = 'gii-model {dirAndTable}'; //
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = '自动生成model类';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $params = $this->arguments()['dirAndTable'];
+        if (strpos($params, '@')) {
+            $newParams = explode('@', $params);
+            $dir = $newParams[0];
+            $table = $newParams[1];
+        } else {
+            $table = $params;
+        }
+        $modelDir = "App\\Models\\";
+        if (isset($dir)) {
+            $namespace = $modelDir . $dir;
+        } else {
+            $namespace = $modelDir;
+        }
+        $mysql = new mysqli(
+            env('DB_HOST'),
+            env('DB_USERNAME'),
+            env('DB_PASSWORD'),
+            env('DB_DATABASE'),
+            env('DB_PORT')
+        );
+        $tablePre = ''; // 表前缀,根据自己实际情况
+        $fileSavePath = '/app/Models/';  //文件实际保存的路径
+        $basePath = base_path() . $fileSavePath;
+        if (isset($dir)) {
+            $basePath .= $dir . '/';
+        }
+        $Tii = new BuildModel($mysql, $table, $namespace, $basePath, $tablePre);
+        $res = $Tii->create();
+        if ($res) {
+            echo $fileSavePath . ucwords(str_replace('_', ' ', $table)) . '.php create success';
+        } else {
+            echo 'Model create fail';
+        }
+        exit;
+    }
+}
+~~~
+3. 终端执行php artisan gii-model user 注意:user 是表名
 
