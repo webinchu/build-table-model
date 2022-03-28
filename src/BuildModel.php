@@ -249,7 +249,7 @@ class BuildModel
         $types = array(
             self::TYPE_INT => array('int', 'bigint', 'tinyint'),
             self::TYPE_STRING => array(
-                'text', 'char', 'varchar', 'decimal', 'longtext', 'mediumtext', 'timestamp', 'json', 'datetime'
+                'text', 'char', 'date', 'varchar', 'decimal', 'longtext', 'mediumtext', 'timestamp', 'json', 'datetime'
             )
         );
 
