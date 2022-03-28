@@ -75,6 +75,7 @@ class GiiModel extends Command
 
 1. 终端执行: php artian make:command GiiModel
 2. 编辑GiiModel(代码如下)
+3. 终端执行php artisan gii-model user 注意:user 是表名
 ~~~
 <?php
 
@@ -156,5 +157,3 @@ class GiiModel extends Command
     }
 }
 ~~~
-3. 终端执行php artisan gii-model user 注意:user 是表名
-
