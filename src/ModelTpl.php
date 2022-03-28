@@ -30,6 +30,7 @@ class {%className%}{%extend%} {
      * @var string 表名
      */
     public \$tableName = '{%trueTableName%}';
+    public \$table = '{%trueTableName%}';
    
     /**
      * @var array 本章表的字段
