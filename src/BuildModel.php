@@ -19,7 +19,7 @@ class BuildModel
     protected $trueTableName = '';
     protected $namespace = '';
     protected $savePath = '';
-    protected $extend = '';
+    protected $extend = ''; //需要继承的父类 eg:  BaseModel
 
     /**
      * @param object $mysql \mysqli 对象
