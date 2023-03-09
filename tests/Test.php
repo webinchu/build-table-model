@@ -12,6 +12,7 @@ $mysql = new mysqli(
 );
 $tablePre = '';
 $tableName = 'user';
+//文件保存位置
 $savePath = "/Users/webin/Project/build-table-model/tests/";
 //完整示例
 $Tii = new webin\BuildModel($mysql, $tableName, 'app\\common\\model', $savePath, '', "\app\common\model\BaseModel");
