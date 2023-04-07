@@ -10,6 +10,7 @@ $mysql = new mysqli(
     'test', //database 库
     '3306' //port 端口
 );
+//表前缀
 $tablePre = '';
 $tableName = 'user';
 //文件保存位置
