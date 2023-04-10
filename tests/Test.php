@@ -12,6 +12,7 @@ $mysql = new mysqli(
 );
 //表前缀
 $tablePre = '';
+//表名
 $tableName = 'user';
 //文件保存位置
 $savePath = "/Users/webin/Project/build-table-model/tests/";
