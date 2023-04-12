@@ -12,8 +12,8 @@ class BuildModel
     const TYPE_STRING = 'string';
 
     protected $mysql = null;
-    protected $tablePre = '';
-    protected $dbName = '';
+    protected $tablePre = ''; //表前缀
+    protected $dbName = ''; //表名
     protected $isHump = true;
     protected $tableName = '';
     protected $trueTableName = '';
