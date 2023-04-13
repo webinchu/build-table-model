@@ -13,6 +13,7 @@ namespace webin;
 
 class ModelTpl
 {
+    //获取tpl
     public static function getTiiTpl()
     {
         $t = <<<__END
