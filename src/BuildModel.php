@@ -11,7 +11,7 @@ class BuildModel
     const TYPE_INT = 'integer';
     const TYPE_STRING = 'string';
 
-    protected $mysql = null;
+    protected $mysql = null; //数据库实例
     protected $tablePre = ''; //表前缀
     protected $dbName = ''; //表名
     protected $isHump = true;
