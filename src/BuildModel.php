@@ -17,8 +17,8 @@ class BuildModel
     protected $isHump = true;
     protected $tableName = '';
     protected $trueTableName = '';
-    protected $namespace = '';
-    protected $savePath = '';
+    protected $namespace = ''; //命名空间
+    protected $savePath = ''; //保存位置
     protected $extend = ''; //需要继承的父类 eg:  BaseModel
 
     /**
