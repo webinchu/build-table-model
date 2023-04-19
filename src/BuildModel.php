@@ -247,6 +247,7 @@ class BuildModel
     {
         list($type) = explode('(', $typeString);
         $types = array(
+            //整型
             self::TYPE_INT => array('int', 'bigint', 'tinyint'),
             self::TYPE_STRING => array(
                 'text', 'char', 'date', 'varchar', 'decimal', 'longtext', 'mediumtext', 'timestamp', 'json', 'datetime'
