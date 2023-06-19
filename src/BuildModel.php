@@ -138,10 +138,14 @@ class BuildModel
     }
 
 
-    public function getTiiFields($tableName)
+    public function getTiiFields()
     {
         $this->mysql->set_charset('utf8mb4');
         $noteQuery = $this->mysql->query("SHOW FULL COLUMNS FROM  " . $this->tablePre . $this->tableName . ";");
+        if (!$noteQuery) {
+            echo "ERROR : Check if the table " . $this->tablePre . $this->tableName . " exists";
+            exit;
+        }
         $notes = $noteQuery->fetch_all(1);
         $fetch = $this->getDesc($this->getTrueTableName());
         $fields = [];
@@ -258,6 +262,8 @@ class BuildModel
         foreach ($types as $key => $value) {
             if (in_array($type, $value)) {
                 return $key;
+            } else {
+                return self::TYPE_STRING;
             }
         }
         return $type;
@@ -266,7 +272,7 @@ class BuildModel
 
     public function getFieldString()
     {
-        $fieldString = $this->arrayToString($this->getTiiFields($this->tableName));
+        $fieldString = $this->arrayToString($this->getTiiFields());
         return $fieldString;
     }
 
