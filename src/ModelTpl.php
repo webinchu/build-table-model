@@ -28,7 +28,7 @@ namespace {%namespace%};
 class {%className%}{%extend%} {
         
     /**
-     * @var string 表名
+     * @var string 表名(为了兼容laravel和ThinkPHP)
      */
     public \$tableName = '{%trueTableName%}';
     public \$table = '{%trueTableName%}';
