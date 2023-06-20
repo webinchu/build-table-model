@@ -30,8 +30,8 @@ class {%className%}{%extend%} {
     /**
      * @var string 表名(为了兼容laravel和ThinkPHP)
      */
-    public \$tableName = '{%trueTableName%}';
-    public \$table = '{%trueTableName%}';
+    public \$tableName = '{%trueTableName%}'; //TP
+    public \$table = '{%trueTableName%}'; //Laravel
    
     /**
      * @var array 本章表的字段
