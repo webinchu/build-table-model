@@ -9,6 +9,7 @@ namespace webin;
 class BuildModel
 {
     const TYPE_INT = 'integer';
+    const TYPE_INT_NEW = 'int';
     const TYPE_STRING = 'string';
 
     protected $mysql = null; //数据库实例
