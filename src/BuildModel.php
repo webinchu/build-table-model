@@ -128,7 +128,7 @@ class BuildModel
     public function getDesc($tableName)
     {
         $sql = "desc " . $this->getTrueTableName($tableName);
-        $this->mysql->set_charset('utf-8');
+        $this->mysql->set_charset('utf8mb4');
         $query = $this->mysql->query($sql);
         $fetch = array();
         while (is_array($row = $query->fetch_array(1))) {
